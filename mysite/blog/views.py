@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Post
 # Create your views here.
 
 
@@ -11,3 +12,17 @@ def test2(request,id):
 
 def test3(request,year,mon,day):
     return HttpResponse(f'{year}년 {mon}월 {day} 일')
+
+def list(request):
+    post_list = Post.objects.all()
+    titles = ''
+    for post in post_list:
+    	titles += post.title
+    return HttpResponse(titles)
+
+def detail(request, id):
+    try:
+        post = Post.objects.get(id=id)
+    except:
+        return HttpResponse('미존재 데이터')
+    return HttpResponse(post.title)
