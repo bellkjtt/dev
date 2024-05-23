@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}  
+    Post 목록
+{% endblock %}
+
+{% block content %}
+
+    <h1> Post 목록 보기 </h1>
+  
+    <form action="" method="get">
+        {% csrf_token %}
+        검색어 : <input type="text" name="keyword"> 
+                <input type="submit" value="검색">
+        {% comment %} #입력상자가 만들어지고, name이라는 변수에 저장되서 넘어간다. {% endcomment %}
+    </form>
+
+    {%for post in post_all %}
+    <a href="{% url 'blog:detail' post.id %}"> {{post.title}}</a><br>
+    {% endfor %}
+    {% comment %} 출력이라는 의미 {% endcomment %}
+
+    <a href= "{% url 'blog:create' %}">[새 글 쓰기]</a>
+
+{% endblock %}

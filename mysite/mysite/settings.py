@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog",
+    "book",
+    "gallery",
+    "accounts",
    # "music",
 ]
 
@@ -56,7 +60,7 @@ ROOT_URLCONF = "mysite.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS' : [BASE_DIR / 'templates'] ,
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -88,7 +92,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.passwordlidation.UserAttributeSimilarityValidator",
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -118,6 +122,21 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, 'mysite', 'static'), #해당 static 디렉토리는 장고밖에 모른다.
+] 
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') #장고 웹서버가 아닌, 실제 웹서버가 사용하는 루트
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = '/blog/'
+LOGOUT_REDIRECT_URL = '/blog/'
+
+LOGIN_URL = '/accounts/login/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

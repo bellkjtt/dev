@@ -1,0 +1,12 @@
+{% if score >= 60 %}
+합격!
+{% else %}
+불합격!
+{% endif %}<br>
+
+<hr>
+{{var | linebreaks}}
+{% comment %} 필터를 적용한다. linebraks는 줄바꿈을 적용한다. {% endcomment %}
+<hr>
+{{var | truncatechars:100}}
+{% comment %} 100개의 글자만 보여지게 할 수 있다. {% endcomment %}
