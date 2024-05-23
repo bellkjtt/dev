@@ -53,6 +53,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "accounts.middleware.BlockedMiddleware"
 ]
 
 ROOT_URLCONF = "mysite.urls"
@@ -137,6 +138,8 @@ LOGIN_REDIRECT_URL = '/blog/'
 LOGOUT_REDIRECT_URL = '/blog/'
 
 LOGIN_URL = '/accounts/login/'
+
+EMAIL_BACKEND= "django.core.mail.backends.console.EmailBackend"
 
 
 # Default primary key field type
